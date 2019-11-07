@@ -11,7 +11,7 @@ public interface Service {
 
     Customer getCustomerById(long id);
 
-    List<Customer> getCustomersLikeName(String likename);
+    List<Customer> getCustomersLikeName(String likename) throws Exception;
 
     Agent getAgentById(long id);
 

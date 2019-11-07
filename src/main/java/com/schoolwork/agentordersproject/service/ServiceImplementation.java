@@ -9,7 +9,9 @@ import com.schoolwork.agentordersproject.repos.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service(value = "service")
 public class ServiceImplementation implements com.schoolwork.agentordersproject.service.Service {
@@ -34,7 +36,11 @@ public class ServiceImplementation implements com.schoolwork.agentordersproject.
 
     @Override
     public List<Customer> getCustomersLikeName(String likename) {
-        return customerRepo.findByCustnameContainingIgnoringCase(likename);
+        List<Customer> list = customerRepo.findByCustnameContainingIgnoringCase(likename);
+        if(list.isEmpty()){
+            throw new EntityNotFoundException("List is empty");
+        }
+        return list;
     }
 
     @Override

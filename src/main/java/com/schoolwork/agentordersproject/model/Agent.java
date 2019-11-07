@@ -23,10 +23,7 @@ public class Agent {
     private String country;
 
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = false)
-//    @JoinTable(name = "agentswithcustomers",
-//            joinColumns = @JoinColumn(name = "agentcode"),
-//            inverseJoinColumns = @JoinColumn(name = "custcode"))
-    @JsonIgnoreProperties("customer")
+    @JsonIgnoreProperties("agent")
     List<Customer> customers = new ArrayList<>();
 
     public Agent() { }

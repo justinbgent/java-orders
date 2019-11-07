@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -26,16 +28,14 @@ public class Customer {
     private String phone;
     //private long agentcode;
 
-    @ManyToOne
-    @JoinTable(name = "cutomersorders",
-            joinColumns = @JoinColumn(name = "custcode"),
-            inverseJoinColumns = @JoinColumn(name = "agentcode"))
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("customer")
-    Order order;
+    List<Order> orders = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "agentcode",
             nullable = false)
+    @JsonIgnoreProperties("customers")
     private Agent agent;
 
     public Customer() { }
@@ -97,7 +97,15 @@ public class Customer {
 
     public void setPhone(String phone) { this.phone = phone; }
 
-    public Order getOrder() { return order; }
+    public List<Order> getOrders() { return orders; }
 
-    public void setOrder(Order order) { this.order = order; }
+    public void setOrders(List<Order> orders) { this.orders = orders; }
+
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
 }

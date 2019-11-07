@@ -20,10 +20,10 @@ public class Order implements Serializable {
     private double ordamount;
     private double advanceamount;
     private String orderdescription;
-    //private long custcode;
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
+    @JsonIgnoreProperties("orders")
     private Customer customer;
 
 //    @OneToMany
