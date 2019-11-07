@@ -1,14 +1,16 @@
 package com.schoolwork.crudyrestaurants.amodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "agents")
 public class Agent {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private long agentcode;
 
     @Column
@@ -17,4 +19,8 @@ public class Agent {
     private double commission;
     private String phone;
     private String country;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = false)
+    @JsonIgnoreProperties("customer")
+    private long custcode;
 }

@@ -1,17 +1,19 @@
 package com.schoolwork.crudyrestaurants.amodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "customers")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private long custcode;
 
-    @Column
+    @Column(nullable = false)
     private String custname;
     private String custcity;
     private String workingarea;
@@ -23,6 +25,7 @@ public class Customer {
     private double outstandingamt;
     private String phone;
 
-
+    @ManyToOne
+    @JoinColumn(name = "agentcode", nullable = false)
     private long agentcode;
 }

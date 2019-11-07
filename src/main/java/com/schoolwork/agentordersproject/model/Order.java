@@ -1,14 +1,14 @@
 package com.schoolwork.crudyrestaurants.amodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders")
 public class Order {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private long ordnum;
 
     @Column
@@ -16,6 +16,8 @@ public class Order {
     private double advanceamount;
     private String orderdescription;
 
+    @OneToMany
+    @NotNull
     private long custcode;
 
 }
