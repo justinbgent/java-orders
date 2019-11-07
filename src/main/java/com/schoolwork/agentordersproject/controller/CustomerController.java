@@ -7,4 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customers")
 public class CustomerController {
     // http://localhost:2019/customers/orders
+
+    // http://localhost:2019/customers/customer/{custcode}
+
+    // http://localhost:2019/customers/namelike/{likename}
 }

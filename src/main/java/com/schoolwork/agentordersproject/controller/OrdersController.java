@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrdersController {
+    // http://localhost:2019/orders/order/{orderid}
 }
