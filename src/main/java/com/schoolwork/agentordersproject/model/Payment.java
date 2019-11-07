@@ -2,17 +2,22 @@ package com.schoolwork.agentordersproject.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "payments")
-public class Payment {
+public class Payment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private long paymentid;
 
     @Column(nullable = false)
     private String type;
+
+//    @ManyToMany(mappedBy = "payments")
+//    private List<Order> orders = new ArrayList<>();
 
     public Payment() { }
 

@@ -1,28 +1,40 @@
 package com.schoolwork.agentordersproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.id.Assigned;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "jointable")
-public class OrderPayment {
+@Table(name = "orderspayments")
+@IdClass(value = OrderPayment.class)
+public class OrderPayment implements Serializable {
 
-    private long ordernum;
-    private long paymentid;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "ordnum")
+    private Order order;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "paymentid")
+    private Payment payment;
 
     public OrderPayment() { }
 
-    public OrderPayment(long ordernum, long paymentid) {
-        this.ordernum = ordernum;
-        this.paymentid = paymentid;
+    public Order getOrder() {
+        return order;
     }
 
-    public long getOrdernum() { return ordernum; }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-    public void setOrdernum(long ordernum) { this.ordernum = ordernum; }
+    public Payment getPayment() {
+        return payment;
+    }
 
-    public long getPaymentid() { return paymentid; }
-
-    public void setPaymentid(long paymentid) { this.paymentid = paymentid; }
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 }

@@ -15,7 +15,7 @@ public class ServiceImplementation implements com.schoolwork.agentordersproject.
     private CustomerRepo customerRepo;
 
     @Override
-    public List<Customer> getCustomers() {
+    public List<Customer> getCustomersWithOrders() {
         return null;
     }
 
@@ -25,7 +25,7 @@ public class ServiceImplementation implements com.schoolwork.agentordersproject.
     }
 
     @Override
-    public List<Customer> getCustomerLikeName(String likename) {
+    public List<Customer> getCustomersLikeName(String likename) {
         return null;
     }
 

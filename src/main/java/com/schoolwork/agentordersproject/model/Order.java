@@ -1,11 +1,16 @@
 package com.schoolwork.agentordersproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
@@ -20,6 +25,13 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
     private Customer customer;
+
+//    @OneToMany
+//    @JoinTable(name = "orderspayments",
+//            joinColumns = @JoinColumn(name = "ordnum"),
+//            inverseJoinColumns = @JoinColumn(name = "paymentid"))
+//            @JsonIgnoreProperties("orders")
+//    private List<Payment> payments = new ArrayList<>();
 
     public Order() { }
 

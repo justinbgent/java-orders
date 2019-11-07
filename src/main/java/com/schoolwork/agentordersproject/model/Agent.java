@@ -22,10 +22,10 @@ public class Agent {
     private String phone;
     private String country;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = false)
-    @JoinTable(name = "agentswithcustomers",
-            joinColumns = @JoinColumn(name = "agentcode"),
-            inverseJoinColumns = @JoinColumn(name = "custcode"))
+    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = false)
+//    @JoinTable(name = "agentswithcustomers",
+//            joinColumns = @JoinColumn(name = "agentcode"),
+//            inverseJoinColumns = @JoinColumn(name = "custcode"))
     @JsonIgnoreProperties("customer")
     List<Customer> customers = new ArrayList<>();
 

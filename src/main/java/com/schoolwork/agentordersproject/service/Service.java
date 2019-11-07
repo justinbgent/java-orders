@@ -7,11 +7,11 @@ import com.schoolwork.agentordersproject.model.Order;
 import java.util.List;
 
 public interface Service {
-    List<Customer> getCustomers();
+    List<Customer> getCustomersWithOrders();
 
     Customer getCustomerById(long id);
 
-    List<Customer> getCustomerLikeName(String likename);
+    List<Customer> getCustomersLikeName(String likename);
 
     Agent getAgentById(long id);
 

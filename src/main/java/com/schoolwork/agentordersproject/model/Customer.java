@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -32,8 +30,13 @@ public class Customer {
     @JoinTable(name = "cutomersorders",
             joinColumns = @JoinColumn(name = "custcode"),
             inverseJoinColumns = @JoinColumn(name = "agentcode"))
-    @JsonIgnoreProperties("customers")
-    List<Order> orders = new ArrayList<>();
+    @JsonIgnoreProperties("customer")
+    Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "agentcode",
+            nullable = false)
+    private Agent agent;
 
     public Customer() { }
 
@@ -94,7 +97,7 @@ public class Customer {
 
     public void setPhone(String phone) { this.phone = phone; }
 
-    public List<Order> getOrders() { return orders; }
+    public Order getOrder() { return order; }
 
-    public void setOrders(List<Order> orders) { this.orders = orders; }
+    public void setOrder(Order order) { this.order = order; }
 }
