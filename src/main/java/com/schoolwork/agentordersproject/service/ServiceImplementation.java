@@ -3,7 +3,9 @@ package com.schoolwork.agentordersproject.service;
 import com.schoolwork.agentordersproject.model.Agent;
 import com.schoolwork.agentordersproject.model.Customer;
 import com.schoolwork.agentordersproject.model.Order;
+import com.schoolwork.agentordersproject.repos.AgentRepo;
 import com.schoolwork.agentordersproject.repos.CustomerRepo;
+import com.schoolwork.agentordersproject.repos.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +16,34 @@ public class ServiceImplementation implements com.schoolwork.agentordersproject.
     @Autowired
     private CustomerRepo customerRepo;
 
+    @Autowired
+    private AgentRepo agentRepo;
+
+    @Autowired
+    private OrderRepo orderRepo;
+
     @Override
     public List<Customer> getCustomersWithOrders() {
-        return null;
+        return customerRepo.getAllBy();
     }
 
     @Override
     public Customer getCustomerById(long id) {
-        return null;
+        return customerRepo.getByCustcode(id);
     }
 
     @Override
     public List<Customer> getCustomersLikeName(String likename) {
-        return null;
+        return customerRepo.findByCustnameContainingIgnoringCase(likename);
     }
 
     @Override
     public Agent getAgentById(long id) {
-        return null;
+        return agentRepo.getByAgentcode(id);
     }
 
     @Override
     public Order getOrderById(long id) {
-        return null;
+        return orderRepo.getByOrdnum(id);
     }
 }
